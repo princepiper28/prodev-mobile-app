@@ -1,24 +1,19 @@
-import { View, Text, ImageBackground } from "react-native";
-import EvilIcons from "@expo/vector-icons/EvilIcons";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { PropertyListingProps } from "@/interfaces";
 import { styles } from "@/styles/_propertyCardStyle";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { ImageBackground, Text, View } from "react-native";
 
-const PropertyListingCard: React.FC<PropertyListingProps> = ({
-  propertyName,
-  rate,
-  currency,
-  amount,
-  location,
-  favorite,
-}) => {
+const PropertyListingCard = (props: PropertyListingProps) => {
+  const { propertyName, rate, currency, amount, location, favorite } = props;
   return (
     <ImageBackground
       source={require("@/assets/images/sample-image.png")}
       style={styles.container}
     >
       <View style={styles.overlay}>
+        {/* Favorite Icon */}
         <View style={styles.favoriteGroup}>
           <View style={styles.favoriteOverlay}>
             {favorite ? (
@@ -29,11 +24,13 @@ const PropertyListingCard: React.FC<PropertyListingProps> = ({
           </View>
         </View>
 
+        {/* Property Info */}
         <View style={styles.group}>
           <View style={styles.rateGroup}>
             <MaterialIcons name="star-rate" size={40} color="#FAC02B" />
             <Text style={styles.rateText}>{rate}</Text>
           </View>
+
           <View style={styles.cardGroup}>
             <View style={styles.cardTextGroup}>
               <Text style={styles.cardLargeText}>{propertyName}</Text>
